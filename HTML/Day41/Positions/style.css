@@ -1,0 +1,143 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.parent{
+    border: 5px solid black;
+    display: flex;
+    width: fit-content;
+    height: 200px;
+}
+
+
+.box{
+    height: 200px;
+    width: 200px;
+    border: 2px solid yellow;
+}
+
+
+
+
+#static-special{
+    position: static;
+    top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#fixed-special{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: yellow;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#relative-special{
+    position: relative;
+    top: 100px;
+    left: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#absolute-parent{
+    position: relative;
+}
+
+#absolute-special{
+    position: absolute;
+    bottom: 120px;
+    border: 10px solid green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sticky-special{
+    position: sticky;
+    top: 0px;
+}
+
+#sticky-parent{
+    height: 1000px;
+}

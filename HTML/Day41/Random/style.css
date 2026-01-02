@@ -1,0 +1,27 @@
+:root{
+    --meraKhudKaColor : #00F7FF;
+    --meraBorderRadius : 50px
+}
+
+
+#box{
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+    overflow: scroll;
+}
+
+
+.xyz{
+    background-color: var(--meraKhudKaColor, black);
+    border-radius: var(--meraBorderRadius);
+}
+
+.abc{
+    background-color: var(--meraKhudKaColor);
+}
+
+
+.pqr{
+    background-color: var(--meraKhudKaColor);
+}

@@ -1,0 +1,35 @@
+/* .box{
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+#parent{
+    display: flex;
+    background-color: yellow;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    flex-wrap: wrap;
+    height: 100vh;
+} */
+
+
+
+#flex{
+    display: flex;
+    height: 200px;
+    width: 250px;
+}
+
+
+.boxes{
+    flex-basis: 100px;
+    border: 1px solid black;
+}
+
+#special{
+    flex-shrink: 3;
+}

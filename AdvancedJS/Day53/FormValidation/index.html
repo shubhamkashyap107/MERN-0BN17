@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    form{
+        background: white;
+        padding: 40px 35px;
+        border-radius: 12px;
+        width: 320px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    form div{
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    input{
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    input:focus{
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 2px rgba(102,126,234,0.2);
+    }
+
+    button{
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #667eea;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover{
+        background: #5a67d8;
+        transform: translateY(-1px);
+    }
+
+    button:active{
+        transform: translateY(0);
+    }
+</style>
+</head>
+<body>
+    
+    <form>
+
+        <div>
+            <label for="un">Username</label>
+            <input type="text" id="un">
+            <span id="username-error" style="color: red; margin-top: 12px; margin-left: 5px; display: none;">
+                Invalid Username
+            </span>
+        </div>
+
+
+        <div>
+            <label for="pw">Password</label>
+            <input type="password" id="pw">
+            <span id="password-error" style="color: red; margin-top: 12px; margin-left: 5px; display: none;">
+                Password should have special characters, uppercase and lowercase letters
+            </span>
+        </div>
+
+
+        <button id="submitBtn" type="button">Submit</button>
+
+
+    </form>
+
+
+
+    <script src="./app.js"></script>
+
+</body>
+</html>

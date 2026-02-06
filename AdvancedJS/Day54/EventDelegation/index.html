@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* border: 5px solid black; */
+            padding: 50px;
+            height: 70vh;
+            gap: 20px;
+        }
+
+        .child{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Delegation</h1>
+<!-- 
+    <div class="product" id="a">A</div>
+    <div class="product" id="b">B</div>
+    <div class="product" id="c">C</div>
+    <div class="product" id="d">D</div> -->
+
+    <main id="container">
+        <div class="child">A</div>
+        <div class="child">B</div>
+        <div class="child">C</div>
+        <div class="child">D</div>
+        <div class="child">e</div>
+        <div class="child">f</div>
+        <div class="child">g</div>
+        <div class="child">h</div>
+    </main>
+
+
+    <script src="./app.js"></script>
+</body>
+</html>

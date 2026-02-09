@@ -1,0 +1,21 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.image{
+    height: 100px;
+    width: 150px;
+}
+
+.card{
+    border: 5px solid lightblue;
+    /* height: 200px; */
+    width: 150px;
+    padding: 10px;
+}
+
+.category{
+    overflow-wrap: break-word;
+}

@@ -147,8 +147,72 @@ class BankAccount // name, amount, method -> withdraw, deposit, balance
 
 
 
+class Product{
+    constructor(n, p)
+    {
+        this.name = n
+        this.price = p
+    }
+
+
+}
 
 
 class ShoppingCart{
-    
+    constructor()
+    {
+        this.cart = []
+    }
+
+    addToCart(product)
+    {
+        if(!(product instanceof Product))
+        {
+            console.log("Please Add A Valid Product")
+            return
+        }
+
+        this.cart.push(product)
+        // console.log(`${product.name} added to cart`)
+
+    }
+
+    clearCart()
+    {
+        this.cart = []
+        // console.log("Cart Cleared")
+    }
+
+    getBill()
+    {
+        let sum = 0
+        for(let item of this.cart)
+        {
+            sum += item.price
+        }
+        console.log("Total :", sum)
+    }
+
+    removeProduct(productName)
+    {
+        let newCart = this.cart.filter((p) => {
+            return p.name != productName
+        })
+
+        this.cart = newCart
+    }
 }
+
+
+let sc = new ShoppingCart()
+sc.addToCart(new Product("Mouse", 300))
+sc.addToCart(new Product("Keboard", 700))
+sc.addToCart(new Product("Monitor", 23300))
+// console.log(sc.cart)
+// sc.clearCart()
+// console.log(sc.cart)
+
+// sc.getBill()
+console.log(sc.cart)
+sc.removeProduct("Mouse")
+console.log(sc.cart)

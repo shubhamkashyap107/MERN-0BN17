@@ -4,64 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moojic Player</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     
-    <div id="container">
+<div id="container">
 
-        <main id="music-player-container">
-            
+    <main id="music-player-container">
+        
+        <div id="music-player">
 
-            <div id="music-player">
-                <img style="height: 50%; width: 90%;" src="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg" alt="album_img">
+            <!-- IMAGE -->
+            <img id="track-image"
+            src="https://media.istockphoto.com/id/2055023629/photo/4k-beautiful-color-gradient-background-with-noise-abstract-pastel-holographic-blurred-grainy.webp?a=1&b=1&s=612x612&w=0&k=20&c=3kohESuSdanYIOdwrCT29qmrPfdu1TVcqNIwutJuEmk="
+            alt="album_img">
 
-                <div style="height: 50%;">
-                    <input style="width: 90%;" type="range" name="" id="">
+            <!-- BOTTOM SECTION -->
+            <div class="bottom-section">
 
-                    <div>
+                <!-- SONG NAME -->
+                <h3 id="track-name">Select Song</h3>
 
-                        <span>
+                <!-- RANGE -->
+                <input id="progress" value="0" type="range">
 
-                            <i class="fa-solid fa-angles-left"></i>
+                <!-- BUTTONS -->
+                <div class="btns">
 
-                        </span>
+                    <span>
+                        <i id="prev" class="fa-solid fa-angles-left"></i>
+                    </span>
 
-                        <span id="play-btn">
+                    <span id="play-btn">
+                        <i id="play-icon" class="fa-solid fa-play"></i>
+                    </span>
 
-                            <i class="fa-solid fa-play"></i>
-
-                        </span>
-
-                        <span>
-
-                            <i class="fa-solid fa-angles-right"></i>
-
-                        </span>
-
-                    </div>
+                    <span>
+                        <i id="next" class="fa-solid fa-angles-right"></i>
+                    </span>
 
                 </div>
-            </div>
 
-            <span id="collapse-expand">
-                <i id="expand-icon" class="fa-solid fa-arrow-right"></i>
-            </span>
-        </main>
+                <input style="accent-color: blue;" id="volume" value="50" type="range">
 
-        <aside id="songs-list-container">
-            <h3>List</h3>
-
-            <div id="songs-list">
 
             </div>
-        </aside>
+        </div>
 
+        <!-- COLLAPSE -->
+        <span id="collapse-expand">
+            <i id="expand-icon" class="fa-solid fa-arrow-right"></i>
+        </span>
 
+    </main>
 
-    </div>
+    <!-- SONG LIST -->
+    <aside id="songs-list-container">
+        <h3>List</h3>
 
-    <script src="./app.js"></script>
+        <div id="songs-list">
+            <!-- songs via JS -->
+        </div>
+    </aside>
+
+</div>
+
+<script src="./app.js"></script>
 </body>
 </html>

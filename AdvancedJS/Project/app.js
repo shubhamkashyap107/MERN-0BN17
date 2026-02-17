@@ -3,6 +3,17 @@ const songsListContainer = document.getElementById("songs-list-container")
 const songsList = document.getElementById("songs-list")
 const musicPlayerContainer = document.getElementById("music-player-container")
 const playBtn = document.getElementById("play-btn")
+const playIcon = document.getElementById("play-icon")
+const imageTag = document.getElementById("track-image")
+const songName = document.getElementById("track-name")
+const prevBtn = document.getElementById("prev")
+const nextBtn = document.getElementById("next")
+const progressBar = document.getElementById("progress")
+const volumeBar = document.getElementById("volume")
+let song = new Audio("./media/boyfriend_remix.mp3");
+let currSongIdx = 0
+song.volume = 0.5
+
 
 expandIcon.addEventListener("click", () => {
     if(expandIcon.classList.contains("fa-arrow-right"))
@@ -45,6 +56,8 @@ const songsInfo = [
 
 ]
 
+let foundSong = songsInfo[0]
+
 for(let item of songsInfo)
 {
     const songItem = document.createElement("p")
@@ -59,12 +72,104 @@ const allSongs = document.querySelectorAll(".songItem")
 for(let item of allSongs)
 {
     item.addEventListener("click", (e) => {
+       
+        song.pause()
+        playIcon.classList.remove("fa-play")
+        playIcon.classList.add("fa-pause")
+        
+    
         let clickedSong = e.target.innerText
-        const foundSong = songsInfo.find((item) => {
+        const foundSong = songsInfo.find((item, index) => {
+            currSongIdx = index
             return item.name == clickedSong
         })
 
-        const song = new Audio(`./media/${foundSong.trackName}`)
+        imageTag.src = foundSong.img
+        songName.innerText = foundSong.name
+
+        song.src = `./media/${foundSong.trackName}`
+        // console.dir(song)
         song.play()
     })
 }
+
+
+
+playBtn.addEventListener("click", () => {
+
+    if(playIcon.classList.contains("fa-play"))
+    {
+        imageTag.src = foundSong.img
+        songName.innerText = foundSong.name
+        playIcon.classList.remove("fa-play")
+        playIcon.classList.add("fa-pause")
+        song.play()
+    }
+    else
+    {
+        playIcon.classList.remove("fa-pause")
+        playIcon.classList.add("fa-play")
+        song.pause()
+    }
+})
+
+
+
+
+
+
+nextBtn.addEventListener("click", () => {
+    song.pause()
+    currSongIdx++
+    if(currSongIdx == songsInfo.length)
+    {
+        currSongIdx = 0
+    }
+    if(playIcon.classList.contains("fa-play"))
+    {
+        playIcon.classList.remove("fa-play")
+        playIcon.classList.add("fa-pause")
+    }
+    foundSong = songsInfo[currSongIdx]
+    songName.innerText = foundSong.name
+    imageTag.src = foundSong.img
+    song.src = `./media/${foundSong.trackName}`
+    song.play()
+})
+
+
+prevBtn.addEventListener("click", () => {
+    song.pause()
+    currSongIdx--
+    if(currSongIdx < 0)
+    {
+        currSongIdx = songsInfo.length - 1
+    }
+    if(playIcon.classList.contains("fa-play"))
+    {
+        playIcon.classList.remove("fa-play")
+        playIcon.classList.add("fa-pause")
+    }
+    foundSong = songsInfo[currSongIdx]
+    songName.innerText = foundSong.name
+    imageTag.src = foundSong.img
+    song.src = `./media/${foundSong.trackName}`
+    song.play()
+})
+
+
+song.addEventListener("timeupdate", () => {
+    progressBar.value = (song.currentTime / song.duration) * 100
+})
+
+
+progressBar.addEventListener("input", (e) => {
+    song.currentTime = (progressBar.value * song.duration) / 100
+})
+
+
+
+
+volumeBar.addEventListener("input", () => {
+    song.volume = volumeBar.value / 100
+})

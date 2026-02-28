@@ -1,0 +1,19 @@
+#container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card{
+    height: 250px;
+    width: 200px;
+    border: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img{
+    width: 80%;
+    height: 70%;
+}

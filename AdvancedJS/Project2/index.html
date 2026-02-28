@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="board-container">
+
+    <!-- top inputs -->
+    <div class="top-bar">
+      <input id="title-ip" type="text" placeholder="Task title..." />
+      <input type="text" id="desc-ip" placeholder="Description..." />
+      <button id="add-task-btn">Add Task</button>
+    </div>
+
+    <!-- board -->
+    <div class="board">
+
+      <!-- Pending -->
+      <div class="column">
+        <h2>PENDING</h2>
+      
+        <div id="pending-card-container" style=" width: 100%;display: flex; flex-direction: column; ">
+
+        </div>
+      </div>
+
+      <!-- Working -->
+      <div class="column">
+        <h2>WORKING</h2>
+
+        <div id="working-card-container" style=" width: 100%;display: flex; flex-direction: column; ">
+
+        </div>
+      </div>
+
+      <!-- Done -->
+      <div class="column">
+        <h2>DONE</h2>
+
+        <div id="done-card-container" style=" width: 100%;display: flex; flex-direction: column; ">
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="./app.js"></script>
+
+</body>
+</html>

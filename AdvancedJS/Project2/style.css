@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: #0f0f0f;
+  color: white;
+  height: 100vh;
+}
+
+/* container */
+.board-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+/* top bar */
+.top-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.top-bar input {
+  background: transparent;
+  border: 1px solid #666;
+  padding: 10px 14px;
+  color: white;
+  outline: none;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.top-bar button {
+  background: #1db954;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.top-bar button:hover {
+  background: #17a74a;
+}
+
+/* board layout */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* column */
+.column {
+  border: 1px solid #444;
+  min-height: 450px;
+  /* padding: 18px; */
+  padding-top: 18px;
+  border-radius: 10px;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.column h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* card */
+.card {
+  border: 1px solid #2e2e2e;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #111;
+  color: #fff;
+  transition: 0.2s ease;
+  cursor: grab;
+  width: 280px;
+}
+
+/* subtle hover */
+.card:hover {
+  border-color: #1db954;
+  background: #151515;
+}
+
+/* title LEFT aligned */
+.card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-align: left;
+  color: #ffffff;
+}
+
+/* description */
+.card p {
+  font-size: 14px;
+  color: #bcbcbc;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+/* date */
+.card span {
+  font-size: 12px;
+  color: #7a7a7a;
+  display: block;
+  text-align: left;
+}
+.card:hover {
+  background: #151515;
+  transform: scale(1.02);
+}
+
+#pending-card-container,
+#done-card-container,
+#working-card-container {
+  height: 50vh;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 🔥 centers horizontally */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+  display: none;      
+}
+
+

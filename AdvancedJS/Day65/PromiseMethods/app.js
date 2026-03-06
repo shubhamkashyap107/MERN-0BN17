@@ -21,3 +21,6 @@ Promise.all([
 .then((data) => {
     console.log(data)
 })
+.catch(() => {
+    
+})

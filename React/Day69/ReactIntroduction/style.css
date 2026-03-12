@@ -1,0 +1,13 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#navbar{
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+
+    <div id="root"></div>
+
+
+
+
+
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // console.log(ReactDOM)
+
+
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+
+
+        function heading()
+        {
+            return <h1 style={{backgroundColor : "red"}}>Hello world</h1>
+        }
+
+        function list()
+        {
+            return <ul id="xyz">
+                
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+                
+            </ul>
+        }
+
+        root.render([heading(), list()])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // const headingLogo = React.createElement("h3", {id : "logo"}, "LOGO")
+        // const link1 = React.createElement("a", {class : "link"}, "A")
+        // const link2 = React.createElement("a", {class : "link"}, "B")
+        // const link3 = React.createElement("a", {class : "link"}, "C")
+        // const linkContainer = React.createElement("div", {id : "link-container"}, [link1,link2,link3])
+        // const navbar = React.createElement("nav", {id : "navbar"}, [headingLogo, linkContainer])
+
+        // root.render(navbar)
+
+
+
+
+        
+        // const myHeading = React.createElement("h1", {id : "heading"}, "Hello world")
+        // const myPara = React.createElement("p", {class : "xyz"}, "My name is react")
+        // const myList = React.createElement("ul", null, [React.createElement("li", null, "A"), React.createElement("li", null, "B")] )
+
+        // root.render([myHeading, myPara, myList])
+    </script>
+</body>
+</html>

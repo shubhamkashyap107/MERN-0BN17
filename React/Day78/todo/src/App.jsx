@@ -8,7 +8,7 @@ const App = () => {
 
   const[darkMode, setDarkMode] = useState(false)
   const[todos, setTodos] = useState([])
-  console.log(todos)
+  // console.log(todos)
 
   return (
     <div className={"h-screen " + (darkMode ? "bg-black" : "bg-white")}>

@@ -1,5 +1,4 @@
 const { createStore } = require("redux")
-
 const BUY_CAKE = "BUY_CAKE"
 
 function buyCake()
@@ -8,7 +7,6 @@ function buyCake()
         type : BUY_CAKE
     }
 }
-
 
 const initialCakeStore = {
     numOfCakes : 20
@@ -28,7 +26,6 @@ function cakeReducer(state = initialCakeStore, action)
     }
 }
 
-
 const store = createStore(cakeReducer)
 console.log(store)
 console.log("Initial : ", store.getState())
@@ -46,7 +43,5 @@ store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
-
-
 
 console.log(store.getState())

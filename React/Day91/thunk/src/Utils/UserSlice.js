@@ -20,7 +20,7 @@ const userSlice = createSlice({
     name : "User",
     initialState : {
         loading : false,
-        data : [],
+        data : {},
         error : null
     },
     reducers : {},

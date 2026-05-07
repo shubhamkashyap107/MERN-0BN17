@@ -10,15 +10,15 @@ const TopRestaurantsSlider = ({data}) => {
             <h3 className='font-extrabold'>{title}</h3>
 
             <div>
-                <i class="fa-solid fa-arrow-left"></i>
-                <i class="fa-solid fa-arrow-right"></i>
+                <i className="fa-solid fa-arrow-left"></i>
+                <i className="fa-solid fa-arrow-right"></i>
             </div>
         </div>
 
 
         <div className='flex gap-4 overflow-scroll scrollbar-none [scrollbar-width:none] mt-4'>
             {cards.map((item) => {
-                return <RestaurantCard size={"large"} cdn={CDN} data={item} />
+                return <RestaurantCard key={item.id} size={"large"} cdn={CDN} data={item} />
             })}
         </div>
     </div>

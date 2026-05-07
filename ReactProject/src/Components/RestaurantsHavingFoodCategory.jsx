@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from './Loader'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import RestaurantCard from './RestaurantCard'
+import { addDataById } from '../Utils/CacheSlice'
 const CDN = import.meta.env.VITE_IMG_CDN
 
 
@@ -11,34 +12,87 @@ const RestaurantsHavingFoodCategory = () => {
 
     const{id} = useParams()
     const[data, setData] = useState({})
+    const[isIdIncorrect, setIsIdIncorrect] = useState(false)
     const{lat, lon} = useSelector(store => store.location.data)
-    console.log(data)
+    const dispatch = useDispatch()
+    const cachedData = useSelector(store => store.cache[`${id}`])
+    const navigate = useNavigate()
 
     useEffect(() => {
 
-        fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&collection=${id}&tags=layout_CCS_Rolls&sortBy=&filters=&type=rcv2&offset=0&page_type=null`)
-        .then((res) => {
-            return res.json()
-        })
-        .then((apiData) => {
-            // console.log(apiData)
-            let kaamKaData = apiData.data.cards.slice(3).map((item) => {
-                return item.card.card.info
+
+        if(cachedData)
+        {
+             let kaamKaData = cachedData.data.cards.slice(3).map((item) => {
+                    return item.card.card.info
+                })
+
+                setData({
+                    info : {
+                        title : cachedData.data.cards[0].card.card.title,
+                        desc : cachedData.data.cards[0].card.card.description
+                    },
+                    cards : kaamKaData
+                })
+        }
+        else
+        {
+
+
+
+        if(lat)
+        {
+            fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&collection=${id}&tags=layout_CCS_Rolls&sortBy=&filters=&type=rcv2&offset=0&page_type=null`)
+            .then((res) => {
+                return res.json()
             })
-            setData({
-                info : {
-                    title : apiData.data.cards[0].card.card.title,
-                    desc : apiData.data.cards[0].card.card.description
-                },
-                cards : kaamKaData
+            .then((apiData) => {
+                // console.log(apiData.statusCode)
+                dispatch(addDataById({id, data : apiData}))
+
+                if(apiData.statusCode == 1)
+                {
+                    setIsIdIncorrect(true)
+                }
+                let kaamKaData = apiData.data.cards.slice(3).map((item) => {
+                    return item.card.card.info
+                })
+
+                setData({
+                    info : {
+                        title : apiData.data.cards[0].card.card.title,
+                        desc : apiData.data.cards[0].card.card.description
+                    },
+                    cards : kaamKaData
+                })
             })
-        })
+        }
+        
+    
+    }
+
     }, [id, lat, lon])
+
+    if(isIdIncorrect)
+    {
+        return (
+            <div>
+                <Navbar />
+
+                <main>
+                    <h1>Something went wrong...</h1>
+                    <button onClick={() => navigate("/restaurants")}>Go Back</button>
+                </main>
+            </div>
+        )
+    }
 
   return (
     <div>
         <Navbar />
 
+
+        
 
         <main >
             {data.cards ? (

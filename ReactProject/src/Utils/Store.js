@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import locationSliceReducer from "./LocationSlice"
+import cacheSliceReducer from "./CacheSlice"
 
 const Store = configureStore({
     reducer : {
-        location : locationSliceReducer
+        location : locationSliceReducer,
+        cache : cacheSliceReducer
     }
 })
 

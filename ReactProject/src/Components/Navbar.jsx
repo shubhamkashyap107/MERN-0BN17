@@ -1,5 +1,5 @@
 import logo from "../../public/navLogo.svg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import help from "../../public/help.svg"
 import search from "../../public/search.svg"
 import corporate from "../../public/corp.svg"
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react"
 
 const Navbar = () => {
 
+  const navigate = useNavigate()
   const location = useSelector(store => store.location)
 
   
@@ -21,7 +22,7 @@ const Navbar = () => {
 
       <div className="flex items-center gap-4">
 
-        <img src={logo} alt="" />
+        <img onClick={() => navigate("/restaurants")} className="cursor-pointer" src={logo} alt="" />
 
 
         <p>{location.data.location && location.data.location.slice(0,30) + "..."}</p>

@@ -15,7 +15,7 @@ const RestaurantsInAreaGrid = ({data}) => {
 
         <div className='grid grid-cols-4 gap-2b'>
             {cards.map((item) => {
-                return <RestaurantCard cdn={CDN} data={item} />
+                return <RestaurantCard key={item.id} cdn={CDN} data={item} />
             })}
         </div>
 

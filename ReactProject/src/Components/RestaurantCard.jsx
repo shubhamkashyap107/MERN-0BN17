@@ -1,12 +1,16 @@
 import React from 'react'
 import ratingsvg from "../../public/ratingSvg.svg"
+import { useNavigate } from 'react-router-dom'
 
 const RestaurantCard = ({data, cdn, size}) => {
     const{areaName, avgRating, cloudinaryImageId, cuisines, name, sla} = data
     const {slaString} = sla
+    const navigate = useNavigate()
 
   return (
-    <div className='shrink-0 w-fit'>
+    <div className='shrink-0 w-fit' onClick={() => {
+      navigate(`/restaurants/menu/${data.id}`)
+    }}>
         <img className={'rounded-2xl ' + (size == "large" ? "h-50 w-70" : "h-40 w-60")} src={cdn + cloudinaryImageId} alt="" />
 
         <div>

@@ -5,6 +5,8 @@ import Restaurants from './Components/Restaurants'
 import { useDispatch } from 'react-redux'
 import { getLocationThunk } from './Utils/LocationSlice'
 import RestaurantsHavingFoodCategory from './Components/RestaurantsHavingFoodCategory'
+import Menu from './Components/Menu'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
 
@@ -19,12 +21,13 @@ const App = () => {
 
   return (
     <div>
-      
+      <Toaster />
       
     <Routes>
       <Route path='/' element={<Landing />} />
       <Route path='/restaurants' element={<Restaurants />} />
       <Route path='/restaurants/:id' element={<RestaurantsHavingFoodCategory />} />
+      <Route path='/restaurants/menu/:id' element={<Menu />} />
     </Routes>
 
     </div>

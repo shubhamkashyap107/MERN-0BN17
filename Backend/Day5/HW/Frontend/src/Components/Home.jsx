@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import toast from "react-hot-toast"
+import {useNavigate} from "react-router-dom"
 
 const Home = () => {
 
   const [data, setData] = useState([])
+  const nav = useNavigate()
 
   useEffect(() => {
     fetch("http://localhost:8080/todos")
@@ -37,11 +40,27 @@ const Home = () => {
               </p>
 
               <div className='flex gap-3'>
-                <button className='px-5 py-2 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition'>
+                <button onClick={() => {
+                  nav(`/edit/${item.id}?title=${item.title}&desc=${item.desc}`)
+                }} className='px-5 py-2 rounded-lg bg-blue-500 cursor-pointer text-white font-medium hover:bg-blue-600 transition'>
                   Edit
                 </button>
 
-                <button className='px-5 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition'>
+                <button 
+                 onClick={() => {
+                  fetch(import.meta.env.VITE_BE_URL + `/todos/${item.id}`, {
+                    method : "DELETE",
+
+                  })
+                  .then((res) => {
+                    return res.json()
+                  })
+                  .then((data) => {
+                    setData(data)
+                    toast.success("Task Deleted")
+                  })
+                 }}
+                 className='px-5 py-2 rounded-lg bg-red-500 cursor-pointer text-white font-medium hover:bg-red-600 transition'>
                   Delete
                 </button>
               </div>

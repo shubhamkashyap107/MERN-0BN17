@@ -4,7 +4,7 @@ const app = express()
 const cors = require("cors")
 
 app.use(cors({
-    origin : ["http://localhost:5173","http://localhost:5174"]
+    // origin : ["http://localhost:5173","http://localhost:5174"]
 }))
 app.use(express.json())
 app.use("/users", (req, res, next) => { // logging
@@ -22,6 +22,19 @@ app.get("/todos", (req, res) => {
         
     } catch (error) {
         res.json({msg : error.message})
+    }
+})
+
+app.get("/todos/:id", (req, res) => {
+    const{ id } = req.params
+    try {
+        const foundTodo = db.find((item) => {
+            return item.id == id
+        })
+
+        res.status(200).json(foundTodo || {})
+    } catch (error) {
+        
     }
 })
 

@@ -5,6 +5,9 @@ const { VerifiedMail } = require("../models/verifiedMails.model")
 const { Resend } = require("resend")
 const resend = new Resend(process.env.RESEND_API_KEY)
 const validator = require("validator")
+const { User } = require("../models/user.model")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 
 
@@ -133,6 +136,119 @@ router.post("/verify-otp", async(req, res) => {
 
     } catch (error) {
         res.status(400).json({
+            err : error.message
+        })
+    }
+})
+
+
+router.post("/signup", async(req, res) => {
+    try {
+        const{ email, username, password} = req.body
+
+        if(!email || !username || !password)
+        {
+            throw new Error("Please enter all the fields..")
+        }
+
+        if(!validator.isEmail(email))
+        {
+            throw new Error("Please enter a valid email..")
+        }
+
+        if(!validator.isStrongPassword(password))
+        {
+            throw new Error("Please enter a strong password")
+        }
+
+        if(username.length < 2 || username.length > 12)
+        {
+            throw new Error("Username must be 2-12 characters")
+        }
+
+        const foundMail = await VerifiedMail.findOne({email})
+
+        if(!foundMail)
+        {
+            throw new Error("Please verify your mail first..")
+        }
+
+
+        const hashedPassword = await bcrypt.hash(password, 11)
+        // console.log(hashedPassword)
+
+        const createdUser = await User.create({email, password : hashedPassword, username})
+
+        res.status(201).json({
+            success : true,
+            msg : "User created successfully",
+            // data : createdUser
+        })
+
+
+
+    } catch (error) {
+        res.status(400).json({
+            err : error.message
+        })
+    }
+})
+
+router.post("/login", async(req, res) => {
+    try {
+        const{ email, username, password } = req.body
+
+        // const foundUser = await User.findOne({
+        //     $and : [
+        //         {password},
+        //         {
+        //             $or : [
+        //                 {email},
+        //                 {username}
+        //             ]
+        //         }
+        //     ]
+        // })
+
+        
+        const foundUser = await User.findOne({
+            $or : [
+                {email},
+                {username}
+            ]
+        })
+
+
+
+        if(!foundUser)
+        {
+            throw new Error("User does not exist..")
+        }
+
+
+        const isPwCorrect = await bcrypt.compare(password, foundUser.password)
+
+        // console.log("OK", isPwCorrect)
+
+
+        if(!isPwCorrect)
+        {
+            throw new Error("Invalid Credentials..")
+        }
+
+        const token = await jwt.sign({id : foundUser._id}, process.env.JWT_SECRET, {expiresIn : "1d"})
+
+
+
+        res.cookie("token", token, {
+            maxAge : 24 * 60 * 60 * 1000
+        }).status(200).json({
+            success : true,
+            msg : "User logged in successfully"
+        })
+
+    } catch (error) {
+        res.status(404).json({
             err : error.message
         })
     }

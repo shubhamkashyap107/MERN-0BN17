@@ -194,6 +194,7 @@ router.post("/signup", async(req, res) => {
     }
 })
 
+
 router.post("/login", async(req, res) => {
     try {
         const{ email, username, password } = req.body
@@ -254,6 +255,19 @@ router.post("/login", async(req, res) => {
     }
 })
 
+
+router.post("/logout", async(req, res) => {
+    try {
+        res.status(200).cookie("token", "").json({
+            success : true,
+            msg : "User logged out.."
+        })
+    } catch (error) {
+        res.status(400).json({
+            err : error.message
+        })
+    }
+})
 
 
 module.exports = {

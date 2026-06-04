@@ -35,11 +35,12 @@ const userSchema = new mongoose.Schema(
     },
 
     dateOfBirth: {
-      type: Date,
+      type: String,
     },
 
     gender: {
       type: String,
+      // enum : []
     },
 
     followers: [

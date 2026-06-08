@@ -8,7 +8,7 @@ const otpSchema = new mongoose.Schema({
     email : {
         type : String,
         required : true,
-        unique : true
+        // unique : true
     },
     expireAt : {
         type : Date,

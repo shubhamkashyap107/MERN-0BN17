@@ -6,7 +6,10 @@ const cp = require("cookie-parser")
 const { authRouter } = require("./routes/auth.route")
 const { profileRouter } = require("./routes/profile.route")
 const PORT = process.env.PORT || 8080
+const cors = require("cors")
 
+
+app.use(cors())
 app.use(cp())
 app.use(express.json())
 app.use("/api/auth", authRouter)

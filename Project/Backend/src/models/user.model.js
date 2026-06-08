@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       lowercase: true,
+      immutable : true
     },
 
     password: {
@@ -21,25 +22,33 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       minLength : 2,
-      maxLength : 12
+      maxLength : 12,
+      immutable : true
+
     },
 
     firstName: {
       type: String,
       trim: true,
+
     },
 
     lastName: {
       type: String,
       trim: true,
+
     },
 
     dateOfBirth: {
       type: String,
+      immutable : true
+
     },
 
     gender: {
       type: String,
+      immutable : true
+
       // enum : []
     },
 

@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken")
 
 
 
-router.post("/send-otp", async(req, res) => {
+router.post("/send-otp", async(req, res) => { // ratelimit
 
     try {
         const{ email } = req.body // cfghsdjfkg
@@ -106,7 +106,8 @@ router.post("/send-otp", async(req, res) => {
         })
     } catch (error) {
         res.status(400).json({
-            err : error.message
+            err : error.message,
+            test : "OK"
         })
     }
 

@@ -28,6 +28,7 @@ router.put("/complete",isLoggedIn, async(req, res) => {
         foundUser.gender = gender,
         foundUser.dateOfBirth = dateOfBirth,
         foundUser.displayPicture = displayPicture,
+        foundUser.isCompletedProfile = true
 
         await foundUser.save()
 
@@ -60,9 +61,84 @@ router.put("/complete",isLoggedIn, async(req, res) => {
     }
 })
 
+router.patch("/edit", isLoggedIn ,async(req, res) => {
+    try {
+        const{ firstName, lastName, displayPicture, bio } = req.body
 
 
 
+        const loggedInUser = req.user
+
+        loggedInUser.firstName = firstName
+        loggedInUser.lastName = lastName
+        loggedInUser.displayPicture = displayPicture
+        loggedInUser.bio = bio
+
+        await loggedInUser.save()
+
+        res.status(200).json({
+            success : true,
+            msg : "Profile Updated...",
+            data : {
+                email : loggedInUser.email,
+                username : loggedInUser.username,
+                firstName : loggedInUser.firstName,
+                lastName : loggedInUser.lastName,
+                bio : loggedInUser.bio,
+                gender : loggedInUser.gender,
+                dateOfBirth : loggedInUser.dateOfBirth,
+                displayPicture : loggedInUser.displayPicture,
+                followers : loggedInUser.followers,
+                following : loggedInUser.following,
+                posts : loggedInUser.posts,
+            }
+        })
+        
+
+    } catch (error) {
+        res.status(400).json({
+            err : error.message
+        })
+    }
+})
+
+router.patch("/edit/dp", isLoggedIn, async(req, res) => {
+    try {
+        const{displayPicture} = req.body
+
+        if(!validator.isURL(displayPicture))
+        {
+            throw new Error("Please provide a valid picture")
+        }
+
+        const loggedInUser = req.user
+        loggedInUser.displayPicture = displayPicture
+        await loggedInUser.save()
+
+        res.json({
+            success : true,
+            msg : "Profile Picture updated..",
+            data : {
+                email : loggedInUser.email,
+                username : loggedInUser.username,
+                firstName : loggedInUser.firstName,
+                lastName : loggedInUser.lastName,
+                bio : loggedInUser.bio,
+                gender : loggedInUser.gender,
+                dateOfBirth : loggedInUser.dateOfBirth,
+                displayPicture : loggedInUser.displayPicture,
+                followers : loggedInUser.followers,
+                following : loggedInUser.following,
+                posts : loggedInUser.posts,
+            }
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            err : error.message
+        })
+    }
+})
 
 
 module.exports = {

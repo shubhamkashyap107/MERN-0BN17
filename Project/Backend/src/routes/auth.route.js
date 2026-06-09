@@ -15,13 +15,22 @@ router.post("/send-otp", async(req, res) => { // ratelimit
 
     try {
         const{ email } = req.body // cfghsdjfkg
+       
+
+        await VerifiedMail.deleteOne({email})
+
 
         if(!validator.isEmail(email))
         {
             throw new Error("Please enter a valid email...")
         }
 
-        const genOtp = Math.floor(Math.random() * 1000000)
+        var genOtp = String(Math.floor(Math.random() * 1000000))
+        if(genOtp.length == 5)
+        {
+            genOtp.padEnd(6, "0")
+        }
+        
 
         const createdOtp = await OTP.create({
             email,
@@ -29,7 +38,7 @@ router.post("/send-otp", async(req, res) => { // ratelimit
         })
 
         await resend.emails.send({
-            from: "Shubham <onboarding@resend.dev>",
+            from: "Shubham <shubham@noisy.co.in>",
             to: email,
             subject: "OTP Verification",
             html: `
@@ -245,8 +254,21 @@ router.post("/login", async(req, res) => {
         res.cookie("token", token, {
             maxAge : 24 * 60 * 60 * 1000
         }).status(200).json({
-            success : true,
-            msg : "User logged in successfully"
+            success : true, 
+            msg : "User Logged In",
+            data : {
+                email : foundUser.email,
+                username : foundUser.username,
+                firstName : foundUser.firstName,
+                lastName : foundUser.lastName,
+                bio : foundUser.bio,
+                gender : foundUser.gender,
+                dateOfBirth : foundUser.dateOfBirth,
+                displayPicture : foundUser.displayPicture,
+                followers : foundUser.followers,
+                following : foundUser.following,
+                posts : foundUser.posts,
+            }
         })
 
     } catch (error) {
@@ -268,6 +290,43 @@ router.post("/logout", async(req, res) => {
             err : error.message
         })
     }
+})
+
+router.get("/get-user-data", async(req, res) => {
+    try {
+        const {token} = req.cookies
+        const obj = jwt.decode(token, process.env.JWT_SECRET)
+        const foundUser = await User.findById(obj.id)
+
+        if(!foundUser)
+        {
+            throw new Error("User logged out, please log in again..")
+        }
+
+        res.status(200).json({
+            success : true, 
+            data : {
+                email : foundUser.email,
+                username : foundUser.username,
+                firstName : foundUser.firstName,
+                lastName : foundUser.lastName,
+                bio : foundUser.bio,
+                gender : foundUser.gender,
+                dateOfBirth : foundUser.dateOfBirth,
+                displayPicture : foundUser.displayPicture,
+                followers : foundUser.followers,
+                following : foundUser.following,
+                posts : foundUser.posts,
+            }
+        })
+
+
+    } catch (error) {
+        res.status(404).json({
+            err : error.message
+        })
+    }
+
 })
 
 

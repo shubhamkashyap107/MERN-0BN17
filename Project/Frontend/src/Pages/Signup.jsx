@@ -220,6 +220,17 @@ const Signup = () => {
           >
             Sign Up
           </button>
+
+
+          <p className="text-center text-gray-400 text-sm">
+          Already have an account?{" "}
+          <span
+            onClick={() => nav("/login")}
+            className="text-indigo-400 hover:text-indigo-300 cursor-pointer font-medium"
+          >
+            Log In
+          </span>
+        </p>
         </div>
       </div>
     </div>

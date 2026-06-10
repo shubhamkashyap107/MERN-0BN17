@@ -3,6 +3,8 @@ import Landing from "./Pages/Landing"
 import Signup from "./Pages/Signup"
 import { Toaster } from "react-hot-toast"
 import Login from "./Pages/Login"
+import ProtectedRoute from "./Pages/ProtectedRoute"
+import Home from "./Pages/Home"
 
 const App = () => {
   return (
@@ -15,6 +17,13 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />} />
+        </Route>  
+
+        
       </Routes>
 
 

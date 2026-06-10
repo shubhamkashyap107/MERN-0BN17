@@ -3,9 +3,12 @@ import { useState } from "react"
 import validator from "validator"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import { useDispatch } from "react-redux"
+import { addUserData } from "../Utils/UserSlice"
 
 const Login = () => {
 
+    const dispatch = useDispatch()
     const[val, setVal] = useState({
         id : "",
         password : ""
@@ -87,7 +90,8 @@ const Login = () => {
                     },
                     {withCredentials : true}
                     )
-
+                    
+                    dispatch(addUserData(res.data.data))
                     navigate("/home")
 
                 } catch (error) {

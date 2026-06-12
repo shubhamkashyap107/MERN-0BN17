@@ -30,6 +30,8 @@ const userSchema = new mongoose.Schema(
     firstName: {
       type: String,
       trim: true,
+      minLength : 2,
+      
 
     },
 
@@ -41,15 +43,14 @@ const userSchema = new mongoose.Schema(
 
     dateOfBirth: {
       type: String,
-      immutable : true
+      // immutable : true
 
     },
 
     gender: {
       type: String,
-      immutable : true
-
-      // enum : []
+      // immutable : true,
+      enum : ["male", "female", "others"]
     },
 
     followers: [

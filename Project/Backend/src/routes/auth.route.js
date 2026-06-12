@@ -268,6 +268,7 @@ router.post("/login", async(req, res) => {
                 followers : foundUser.followers,
                 following : foundUser.following,
                 posts : foundUser.posts,
+                isCompletedProfile : foundUser.isCompletedProfile
             }
         })
 
@@ -317,6 +318,8 @@ router.get("/get-user-data", async(req, res) => {
                 followers : foundUser.followers,
                 following : foundUser.following,
                 posts : foundUser.posts,
+                isCompletedProfile : foundUser.isCompletedProfile
+
             }
         })
 

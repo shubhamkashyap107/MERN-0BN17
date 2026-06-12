@@ -8,7 +8,8 @@ const { isLoggedIn } = require("../middlewares/isLoggedIn")
 router.put("/complete",isLoggedIn, async(req, res) => {
     try {
         const{firstName, lastName, dateOfBirth, gender, displayPicture, bio} = req.body
-        const{ userId } = req.params
+        // console.log(displayPicture, dateOfBirth, gender)
+        // const{ userId } = req.params
         const foundUser = req.user
 
         if(!firstName || !lastName || !dateOfBirth || !gender)
@@ -22,13 +23,13 @@ router.put("/complete",isLoggedIn, async(req, res) => {
         }
 
         
-        foundUser.firstName = firstName,
-        foundUser.lastName = lastName,
-        foundUser.bio = bio,
-        foundUser.gender = gender,
-        foundUser.dateOfBirth = dateOfBirth,
-        foundUser.displayPicture = displayPicture,
-        foundUser.isCompletedProfile = true
+        foundUser.firstName = firstName;
+        foundUser.lastName = lastName;
+        foundUser.bio = bio;
+        foundUser.gender = gender;
+        foundUser.dateOfBirth = dateOfBirth;
+        foundUser.displayPicture = displayPicture;
+        foundUser.isCompletedProfile = true;
 
         await foundUser.save()
 

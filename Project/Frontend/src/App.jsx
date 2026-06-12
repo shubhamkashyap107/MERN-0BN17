@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast"
 import Login from "./Pages/Login"
 import ProtectedRoute from "./Pages/ProtectedRoute"
 import Home from "./Pages/Home"
+import CompleteProfile from "./Pages/CompleteProfile"
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/complete-profile" element={<CompleteProfile />} />
         </Route>  
 
         
